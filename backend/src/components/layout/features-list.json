@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_layout_features_lists",
+  "info": {
+    "displayName": "Features List"
+  },
+  "options": {},
+  "attributes": {
+    "feature": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.feature"
+    }
+  }
+}

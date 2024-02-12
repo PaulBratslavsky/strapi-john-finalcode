@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_elements_social_links",
+  "info": {
+    "displayName": "SocialLink"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "FACEBOOK",
+        "TWITTER",
+        "YOUTUBE"
+      ]
+    }
+  }
+}
