@@ -1,5 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
+import { StrapiImage } from "./StrapiImage";
+import { formatDate } from "../utils";
 
 interface ImageProps {
   url: string;
@@ -40,10 +41,10 @@ export default function BlogList({ data }: BlogListProps) {
 
 function BlogListCard({ post }: { readonly post: PostProps }) {
   return (
-    <Link href={post.slug}>
+    <Link href={"/blog/" + post.slug}>
       <article className="shadow-lg rounded-lg">
         <div className="relative w-full">
-          <Image
+          <StrapiImage
             src={post.image.url}
             alt={post.image.alternateText}
             height={400}
@@ -53,7 +54,7 @@ function BlogListCard({ post }: { readonly post: PostProps }) {
         </div>
         <div className="p-6">
           <div className="flex items-center justify-between gap-x-4 text-xs">
-            <time dateTime={post.createdAt}>{post.date}</time>
+            <time dateTime={post.createdAt}>{formatDate(post.createdAt)}</time>
             <div className="badge badge-ghost">{post.category.title}</div>
           </div>
           <div className="group relative">
@@ -68,7 +69,7 @@ function BlogListCard({ post }: { readonly post: PostProps }) {
           <div className="relative mt-8 flex items-center gap-x-4">
             <div className="avatar">
               <div className="w-20 rounded-full">
-                <Image
+                <StrapiImage
                   src={post.author.image.url}
                   alt={post.author.image.alternateText}
                   height={400}

@@ -49,3 +49,52 @@ export async function getHomePageData() {
 
   return await fetchData(`${baseUrl}/api/home-page?${query}`);
 }
+
+const ITEMS_PER_PAGE = 3;
+
+export async function getAllPostsData(
+  currentPage?: number,
+  queryString?: string
+) {
+  const query = qs.stringify({
+    populate: {
+      image: {
+        fields: ["url", "alternativeText"],
+      },
+      category: { populate: true },
+      author: {
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+        },
+      },
+    },
+    filters: {
+      $or: [
+        { title: { $containsi: queryString } },
+        { content: { $containsi: queryString } },
+        { description: { $containsi: queryString } },
+      ],
+    },
+    pagination: {
+      pageSize: ITEMS_PER_PAGE,
+      page: currentPage,
+    },
+  });
+
+  return await fetchData(`${baseUrl}/api/posts?${query}`);
+}
+
+export async function getPostBySlug(slug: string) {
+  const query = qs.stringify({
+    filters: { slug: slug },
+    populate: {
+      category: { populate: true },
+      image: { fields: ["url", "alternativeText"] },
+      author: { populate: { image: { fields: ["url", "alternativeText"] } } },
+    }
+  });
+
+  return await fetchData(`${baseUrl}/api/posts?${query}`);
+}
