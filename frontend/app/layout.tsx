@@ -16,7 +16,6 @@ export default async function RootLayoutRoute({
   readonly children: React.ReactNode;
 }) {
   const data = await getGlobalData();
-  console.dir(data, { depth: null });
   return (
     <html lang="en" data-theme="dracula">
       <body className="wrapper">
